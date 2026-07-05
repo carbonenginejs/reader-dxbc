@@ -1,39 +1,21 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile, readdir, stat } from "node:fs/promises";
-import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 
 import { CjsDxbcReader } from "../src/index.js";
 
 /**
- * Optional corpus sweep: scans a local directory of shader-bearing files for
+ * Optional corpus sweep: scans the directory supplied by DXBC_CORPUS_DIR for
  * embedded DXBC payloads (raw magic scan — no effect-container parsing) and
  * decodes every one. Not part of the baseline checks; game assets are never
  * committed. Enable with:
  *   DXBC_CORPUS_DIR=path/to/effects npm test
- * or a gitignored corpus.local.json: { "corpusDir": "path/to/effects" }
  */
-
-const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 function resolveCorpusDir()
 {
-    if (process.env.DXBC_CORPUS_DIR) return process.env.DXBC_CORPUS_DIR;
-    const local = path.join(projectRoot, "corpus.local.json");
-    if (existsSync(local))
-    {
-        try
-        {
-            return JSON.parse(readFileSync(local, "utf8")).corpusDir || null;
-        }
-        catch
-        {
-            return null;
-        }
-    }
-    return null;
+    return process.env.DXBC_CORPUS_DIR || null;
 }
 
 async function* walk(dir)
@@ -66,7 +48,7 @@ const corpusDir = resolveCorpusDir();
 
 test(
     "corpus sweep decodes every embedded DXBC payload",
-    { skip: corpusDir ? false : "set DXBC_CORPUS_DIR or corpus.local.json { corpusDir } to run the corpus sweep" },
+    { skip: corpusDir ? false : "set DXBC_CORPUS_DIR to run the corpus sweep" },
     async () =>
     {
         assert.ok((await stat(corpusDir)).isDirectory(), `corpus dir not found: ${corpusDir}`);

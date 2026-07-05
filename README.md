@@ -4,6 +4,11 @@ Pure-JavaScript CarbonEngineJS-facing reader for Microsoft DXBC (Direct3D
 compiled shader bytecode). No native tooling, no build step; it runs in Node
 and the browser.
 
+CarbonEngine and Fenris Creations (CCP Games) are named in this package for
+interoperability and target-ecosystem context only. DXBC itself is a Microsoft
+format, and this package contains no CarbonEngine or Fenris Creations
+(CCP Games) source code.
+
 DXBC is not a CCP format — this package has no Carbon/Trinity vocabulary. It
 parses the DXBC container and chunk directory, the input/output/patch
 signatures, and decodes the complete SM4/SM5 instruction token stream
@@ -63,13 +68,13 @@ npm test
 
 Baseline tests are fully self-contained (synthetic DXBC assembled in-test) —
 no game assets, network access or fixtures required. An optional corpus sweep
-decodes every DXBC payload found under a local directory of shader files:
+decodes every DXBC payload found under the directory supplied by
+`DXBC_CORPUS_DIR`:
 
 ```sh
 DXBC_CORPUS_DIR=path/to/effects npm test
 ```
 
-or via a gitignored `corpus.local.json`: `{ "corpusDir": "path/to/effects" }`.
 Last full sweep: 1,611 files, 12,125 DXBC payloads, 2,142,826 instructions
 decoded, zero failures.
 
