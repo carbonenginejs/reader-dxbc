@@ -30,12 +30,23 @@
   "files": [
     "src",
     "docs",
+    "README.md",
     "LICENSE",
-    "NOTICE",
-    "README.md"
+    "NOTICE"
   ],
   "license": "MIT",
   "devDependencies": {
     "eslint": "^8.57.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carbonenginejs/reader-dxbc.git"
+  },
+  "homepage": "https://github.com/carbonenginejs/reader-dxbc#readme",
+  "bugs": {
+    "url": "https://github.com/carbonenginejs/reader-dxbc/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
