@@ -1,5 +1,5 @@
 {
-  "name": "reader-dxbc",
+  "name": "@carbonenginejs/reader-dxbc",
   "version": "0.1.0",
   "description": "CarbonEngineJS DXBC reader. Parses Direct3D shader bytecode containers, signatures and the SM4/SM5 token stream, and emits JSON or raw decoder objects for shader translation backends.",
   "type": "module",
@@ -26,6 +26,13 @@
     "sm4",
     "sm5",
     "hlsl"
+  ],
+  "files": [
+    "src",
+    "docs",
+    "LICENSE",
+    "NOTICE",
+    "README.md"
   ],
   "license": "MIT",
   "devDependencies": {

@@ -1,4 +1,4 @@
-# reader-dxbc
+# @carbonenginejs/reader-dxbc
 
 Pure-JavaScript CarbonEngineJS-facing reader for Microsoft DXBC (Direct3D
 compiled shader bytecode). No native tooling, no build step; it runs in Node
@@ -8,8 +8,8 @@ DXBC is not a CCP format — this package has no Carbon/Trinity vocabulary. It
 parses the DXBC container and chunk directory, the input/output/patch
 signatures, and decodes the complete SM4/SM5 instruction token stream
 (218-opcode table, declarations included). The decoded instruction stream is
-the contract shader-translation backends build against (`reader-webgl` for
-GLSL ES 3.00, `reader-webgpu` later for WGSL).
+the contract shader-translation backends build against (`@carbonenginejs/reader-webgl` for
+GLSL ES 3.00, `@carbonenginejs/reader-webgpu` later for WGSL).
 
 ## Public API
 
@@ -20,7 +20,7 @@ under `src/core`; construction utilities destined for a shared Carbon library
 live under `src/carbon`.
 
 ```js
-import CjsDxbcReader from "reader-dxbc";
+import CjsDxbcReader from "@carbonenginejs/reader-dxbc";
 
 // One-shot statics (camelCase by convention)
 CjsDxbcReader.isDxbc(bytes);                  // magic sniff
@@ -70,4 +70,4 @@ decoded, zero failures.
 ## License
 
 MIT (see
-`LICENSE` and `NOTICE`). Unlike reader-gr2, this package has no EUPL-derived code.
+`LICENSE` and `NOTICE`). Unlike `@carbonenginejs/reader-gr2`, this package has no EUPL-derived code.
